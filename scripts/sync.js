@@ -47,7 +47,7 @@ async function RunCommand () {
   }
 
   progressLog(`Syncing Gclient`)
-  util.gclientSync()
+  util.gclientSync(program.init)
 
   progressLog('Applying patches...')
   // Always detect if we need to apply patches, since user may have modified
@@ -81,11 +81,9 @@ async function RunCommand () {
   }
   progressLog('Done applying patches.')
 
-  if (program.init || program.run_hooks) {
-    progressLog('Running gclient hooks...')
-    util.gclientRunhooks()
-    progressLog('Done running gclient hooks.')
-  }
+  progressLog('Running gclient hooks...')
+  util.gclientRunhooks()
+  progressLog('Done running gclient hooks.')
 }
 
 progressLog('Brave Browser Sync starting')
